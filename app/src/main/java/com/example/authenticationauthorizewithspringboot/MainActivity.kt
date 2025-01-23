@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Main(modifier: Modifier = Modifier) {
     var isSignUpScreen by remember { mutableStateOf(true) } // State to toggle between SignUp and LogIn
-
+    val viewModel = UserViewModel(userRepository = userRepository)
     Column(
         modifier = Modifier
             .fillMaxSize()

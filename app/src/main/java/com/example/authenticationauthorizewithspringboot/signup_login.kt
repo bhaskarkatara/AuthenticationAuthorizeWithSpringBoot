@@ -13,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,7 +27,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SignUp(onLoginClick: () -> Unit) {
+fun SignUp(viewModel: UserViewModel,onLoginClick: () -> Unit) {
+    val userState by viewModel.userState.collectAsState()
+
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -52,7 +55,7 @@ fun SignUp(onLoginClick: () -> Unit) {
         Button(
             onClick = {
                 if(name.isNotEmpty() && password.isNotEmpty()){
-
+                  viewModel.getUser(name)
                 }else{
                     Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT)
                         .show()
@@ -60,6 +63,12 @@ fun SignUp(onLoginClick: () -> Unit) {
             }
         ) {
             Text("SignUp..")
+        }
+        when(userState){
+            is Result.Success -> Text("Success")
+            is Result.Failure -> Text("Failure")
+
+
         }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
@@ -71,9 +80,10 @@ fun SignUp(onLoginClick: () -> Unit) {
 }
 
 @Composable
-fun LogIn(onSignUpClick: () -> Unit) {
+fun LogIn(viewModel: UserViewModel,onSignUpClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val userState by viewModel.userState.collectAsState()
     val context = LocalContext.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -97,13 +107,17 @@ fun LogIn(onSignUpClick: () -> Unit) {
         Button(
              onClick = {
                  if (name.isNotEmpty() && password.isNotEmpty()){
-
+                   viewModel.updateUser(name, User(id = 0, name = name, password = password))
                  }
                  else Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT)
                      .show()
              }
         ) {
             Text("Login..")
+        }
+        when(userState){
+            is Result.Success -> Text("Login Success")
+            is Result.Failure -> Text("Login Failure")
         }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
