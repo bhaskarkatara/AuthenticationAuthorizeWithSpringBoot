@@ -64,11 +64,16 @@ fun SignUp(viewModel: UserViewModel,onLoginClick: () -> Unit) {
         ) {
             Text("SignUp..")
         }
-//        when(Result){
-//          is Result.Success -> Text("SignUp Success")
-//           is Result.Failure -> Text("SignUp Failure")
-//
-//        }
+userState?.let { result ->
+    result.fold(
+        onSuccess = {
+            Toast.makeText(context, "SignUp Success", Toast.LENGTH_SHORT).show()
+        },
+        onFailure = {
+             Toast.makeText(context, "SignUp Failure", Toast.LENGTH_SHORT).show()
+        }
+    )
+}
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Already have an account? Login",
@@ -114,10 +119,17 @@ fun LogIn(viewModel: UserViewModel,onSignUpClick: () -> Unit) {
         ) {
             Text("Login..")
         }
-//        when(userState){
-//            is Result.Success -> Text("Login Success")
-//            is Result.Failure -> Text("Login Failure")
-//        }
+       userState?.let{ result ->
+           result.fold(
+               onSuccess = {
+                   Toast.makeText(context, "Login Success", Toast.LENGTH_SHORT).show()
+               },
+               onFailure = {
+                   Toast.makeText(context, "Login Failure", Toast.LENGTH_SHORT).show()
+               }
+           )
+       }
+
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Don't have an account? Sign Up",
