@@ -2,6 +2,7 @@ package com.example.authenticationauthorizewithspringboot
 
 import android.util.Log
 import android.widget.Space
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -27,7 +29,7 @@ import androidx.compose.ui.unit.dp
 fun SignUp(onLoginClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
+    val context = LocalContext.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -48,7 +50,14 @@ fun SignUp(onLoginClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {}
+            onClick = {
+                if(name.isNotEmpty() && password.isNotEmpty()){
+
+                }else{
+                    Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         ) {
             Text("SignUp..")
         }
@@ -65,7 +74,7 @@ fun SignUp(onLoginClick: () -> Unit) {
 fun LogIn(onSignUpClick: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
+    val context = LocalContext.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -86,7 +95,13 @@ fun LogIn(onSignUpClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {}
+             onClick = {
+                 if (name.isNotEmpty() && password.isNotEmpty()){
+
+                 }
+                 else Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT)
+                     .show()
+             }
         ) {
             Text("Login..")
         }
