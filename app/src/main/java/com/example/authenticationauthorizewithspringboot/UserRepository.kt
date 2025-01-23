@@ -1,5 +1,7 @@
 package com.example.authenticationauthorizewithspringboot
 
+import networlCall.RetrofitInstance
+
 class UserRepository(private val apiService: RetrofitInstance.ApiService){
 
     suspend fun getUser(id: String): Result<User> {

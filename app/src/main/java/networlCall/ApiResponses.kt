@@ -1,7 +1,6 @@
-package com.example.authenticationauthorizewithspringboot
+package networlCall
 
-import com.google.firebase.appdistribution.gradle.ApiService
-import retrofit2.Call
+import com.example.authenticationauthorizewithspringboot.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
