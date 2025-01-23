@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -45,6 +46,12 @@ fun SignUp(onLoginClick: () -> Unit) {
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = {}
+        ) {
+            Text("SignUp..")
+        }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Already have an account? Login",
@@ -77,6 +84,12 @@ fun LogIn(onSignUpClick: () -> Unit) {
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = {}
+        ) {
+            Text("Login..")
+        }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Don't have an account? Sign Up",
