@@ -64,12 +64,11 @@ fun SignUp(viewModel: UserViewModel,onLoginClick: () -> Unit) {
         ) {
             Text("SignUp..")
         }
-        when(userState){
-            is Result.Success -> Text("Success")
-            is Result.Failure -> Text("Failure")
-
-
-        }
+//        when(Result){
+//          is Result.Success -> Text("SignUp Success")
+//           is Result.Failure -> Text("SignUp Failure")
+//
+//        }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Already have an account? Login",
@@ -115,10 +114,10 @@ fun LogIn(viewModel: UserViewModel,onSignUpClick: () -> Unit) {
         ) {
             Text("Login..")
         }
-        when(userState){
-            is Result.Success -> Text("Login Success")
-            is Result.Failure -> Text("Login Failure")
-        }
+//        when(userState){
+//            is Result.Success -> Text("Login Success")
+//            is Result.Failure -> Text("Login Failure")
+//        }
         Spacer(modifier = Modifier.height(39.dp))
         Text(
             text = "Don't have an account? Sign Up",

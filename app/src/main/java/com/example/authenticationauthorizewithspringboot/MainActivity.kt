@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Main(modifier: Modifier = Modifier) {
     var isSignUpScreen by remember { mutableStateOf(true) } // State to toggle between SignUp and LogIn
+    val userRepository = UserRepository(apiService = RetrofitInstance.api)
     val viewModel = UserViewModel(userRepository = userRepository)
     Column(
         modifier = Modifier
@@ -49,9 +50,9 @@ fun Main(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (isSignUpScreen) {
-            SignUp(onLoginClick = { isSignUpScreen = false })
+            SignUp(viewModel,onLoginClick = { isSignUpScreen = false })
         } else {
-            LogIn(onSignUpClick = { isSignUpScreen = true })
+            LogIn(viewModel,onSignUpClick = { isSignUpScreen = true })
         }
     }
 }
