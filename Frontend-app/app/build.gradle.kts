@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,6 +9,8 @@ plugins {
 android {
     namespace = "com.example.authenticationauthorizewithspringboot"
     compileSdk = 35
+
+
 
     defaultConfig {
         applicationId = "com.example.authenticationauthorizewithspringboot"
@@ -27,6 +31,15 @@ android {
             )
         }
     }
+    packaging{
+        resources{
+            excludes.add("META-INF/INDEX.LIST")
+            excludes.add("META-INF/*.SF")
+            excludes.add("META-INF/*.DSA")
+            excludes.add("META-INF/*.RSA")
+            excludes.add("META-INF/DEPENDENCIES")
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -40,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation (libs.google.auth.library.oauth2.http)
+    implementation (libs.google.auth.library.credentials)
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
     implementation(libs.androidx.core.ktx)

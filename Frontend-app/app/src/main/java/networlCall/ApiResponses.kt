@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //The object keyword in Kotlin creates a singleton.
 // This means only one instance of RetrofitInstance will exist in the app.
 object RetrofitInstance {
-    private const val BASE_URL = "https://your-backend-url.com/"
+    private const val BASE_URL = "http://192.168.29.159:8080/api/users"
 
     val api: ApiService by lazy {
         Retrofit.Builder()

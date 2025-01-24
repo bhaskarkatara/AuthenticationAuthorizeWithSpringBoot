@@ -111,7 +111,7 @@ fun LogIn(viewModel: UserViewModel,onSignUpClick: () -> Unit) {
         Button(
              onClick = {
                  if (name.isNotEmpty() && password.isNotEmpty()){
-                   viewModel.updateUser(name, User(id = 0, name = name, password = password))
+                   viewModel.updateUser(name, User(name = name, password = password))
                  }
                  else Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT)
                      .show()
